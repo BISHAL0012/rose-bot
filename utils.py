@@ -140,7 +140,7 @@ def user_link(user_id: int, name: str = "user") -> str:
 
 
 def fill_placeholders(text: str, user: User, chat, count: int = 0) -> str:
-    """Fill {first} {last} {fullname} {username} {id} {chatname} {count}."""
+    """Fill {first} {last} {fullname} {name} {username} {id} {chatname} {count}."""
     first = user.first_name or ""
     last = user.last_name or ""
     username = f"@{user.username}" if user.username else first
@@ -148,6 +148,7 @@ def fill_placeholders(text: str, user: User, chat, count: int = 0) -> str:
         text.replace("{first}", first)
         .replace("{last}", last)
         .replace("{fullname}", f"{first} {last}".strip())
+        .replace("{name}", f"{first} {last}".strip())
         .replace("{username}", username)
         .replace("{id}", str(user.id))
         .replace("{chatname}", getattr(chat, "title", "") or "")
