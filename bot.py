@@ -43,7 +43,7 @@ async def post_init(app):
 def main():
     database.init_db()
 
-    token = os.getenv("BOT_TOKEN", "").strip()
+    token = os.getenv("BOT_TOKEN", "").strip() or os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
     if not token or token == "your_token_here":
         sys.exit("❌ BOT_TOKEN পাওয়া যায়নি! .env ফাইলে BOT_TOKEN=... বসান।")
 
